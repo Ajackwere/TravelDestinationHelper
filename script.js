@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to fetch data from the JSON file
   async function fetchData() {
     try {
-      const response = await fetch(BASE_URL);
+      const response = await fetch(BASE_URL, {
+        method:"GET",
+        headers:{
+          "Content-type": "application/json",
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {
