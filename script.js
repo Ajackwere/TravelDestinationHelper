@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const destinationInfo = destinationElement.querySelector(".destination-info");
     const populationElement = destinationInfo.querySelector(".population");
     const weatherElement = destinationInfo.querySelector(".weather-forecast");
+    const temperatureElement = destinationInfo.querySelector(".temperature");
 
     const data = await fetchData();
     if (data) {
@@ -25,10 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (cityData) {
         populationElement.textContent = cityData.population;
         weatherElement.textContent = cityData["weather-forecast"];
+        temperatureElement.textContent = cityData.Temperature;
       }
     } else {
       populationElement.textContent = "N/A";
       weatherElement.textContent = "N/A";
+      temperatureElement.textContent = "N/A";
     }
   }
 
