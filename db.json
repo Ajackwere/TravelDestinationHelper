@@ -1,0 +1,32 @@
+{
+    "cities": [
+        {
+            "id": "1",
+            "name": "Nairobi",
+            "Temperature": "18 degrees",
+            "weather-forecast": "rainy",
+            "population": "2750547"
+        },
+        {
+            "id": "2",
+            "name": "Kisumu",
+            "Temperature": "25 degrees",
+            "weather-forecast": "Sunny",
+            "population": "216479"
+        },
+        {
+            "id": "3",
+            "name": "Mombasa",
+            "Temperature": "32 degrees",
+            "weather-forecast": "Sunny",
+            "population": "2550647"
+        },
+        {
+            "id": "4",
+            "name": "Nakuru",
+            "Temperature": "22 degrees",
+            "weather-forecast": "Moderate rain",
+            "population": "2590547"
+        }
+    ] 
+}

@@ -1,30 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to fetch data from the weather API
-  async function fetchWeatherData(city) {
+  const BASE_URL = "./db.json";
+
+  // Function to fetch data from the JSON file
+  async function fetchData() {
     try {
-      const response = await fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=API_KEY&q=${city}&days=1`
-      );
+      const response = await fetch(BASE_URL);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.log("Error fetching weather data:", error);
+      console.log("Error fetching data:", error);
       return null;
     }
   }
 
-  // Function to update destination information with weather data
+  // Function to update destination information with data
   async function updateDestinationInfo(destinationElement, city) {
-    const destinationInfo =
-      destinationElement.querySelector(".destination-info");
-    const populationElement = destinationElement.querySelector(".population");
-    const weatherElement =
-      destinationElement.querySelector(".weather-forecast");
+    const destinationInfo = destinationElement.querySelector(".destination-info");
+    const populationElement = destinationInfo.querySelector(".population");
+    const weatherElement = destinationInfo.querySelector(".weather-forecast");
 
-    const weatherData = await fetchWeatherData(city);
-    if (weatherData) {
-      populationElement.textContent = weatherData.population;
-      weatherElement.textContent = weatherData.current.condition.text;
+    const data = await fetchData();
+    if (data) {
+      const cityData = data.cities.find((item) => item.name === city);
+      if (cityData) {
+        populationElement.textContent = cityData.population;
+        weatherElement.textContent = cityData["weather-forecast"];
+      }
     } else {
       populationElement.textContent = "N/A";
       weatherElement.textContent = "N/A";
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Extract the city name from the destination title
     const cityName = destination.querySelector("h2").textContent;
 
-    // Update destination information with weather data
+    // Update destination information with data
     updateDestinationInfo(destination, cityName);
   });
 });
